@@ -6,17 +6,17 @@ form.addEventListener("input", throttle(onInput, 500));
 const savedFeedback = JSON.parse(localStorage.getItem(KEY_FORM_TO_SAVE));
 let formData = savedFeedback ?? {};
 updateForm();
+function onInput(evt) {
+    currentElement = evt.target;
+    formData[currentElement.name] = currentElement.value;
+    localStorage.setItem(KEY_FORM_TO_SAVE, JSON.stringify(formData));
+}
 function onSubmit(evt) {
     evt.preventDefault();
     console.log(formData);
     evt.currentTarget.reset();
     localStorage.removeItem(KEY_FORM_TO_SAVE);
     formData = {};
-}
-function onInput(evt) {
-    currentElement = evt.target;
-    formData[currentElement.name] = currentElement.value;
-    localStorage.setItem(KEY_FORM_TO_SAVE, JSON.stringify(formData));
 }
 function updateForm() {
     const { email, message } = form.elements;
