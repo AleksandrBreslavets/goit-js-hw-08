@@ -7,7 +7,7 @@ const savedFeedback = JSON.parse(localStorage.getItem(KEY_FORM_TO_SAVE));
 let formData = savedFeedback ?? {};
 updateForm();
 function onInput(evt) {
-    currentElement = evt.target;
+    const currentElement = evt.target;
     formData[currentElement.name] = currentElement.value;
     localStorage.setItem(KEY_FORM_TO_SAVE, JSON.stringify(formData));
 }
